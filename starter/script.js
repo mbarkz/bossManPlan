@@ -25,7 +25,9 @@ for (let i = 0; i < hoursArray.length; i++) {
     var timeblockEl = $('<div>Timeblock</div>').addClass('timeblock').css({
         'background-color': 'grey',
         'height': '70px',
-        'padding': '10px'
+        'padding': '10px',
+        'border-radius': '15px',
+        'margin': '5px'
     });
 
     //creates a unique timeblock for each hour in the array
@@ -55,15 +57,17 @@ for (let i = 0; i < hoursArray.length; i++) {
 
 // * Allow a user to enter an event when they click a timeblock
 
-$('.timeblock').on('click', function() {
+$('.timeblock').on('click', function(event) {
 
-    var clickedTime = $(this).attr('data-letter');
-    alert('You clicked on ' + clickedTime);
+    event.preventDefault()
 
     if ($(this).find('form').length === 0) {
         // Create an input field and append it to the time block
         var inputField = $('<input type="text" placeholder="Event Name">');
         var form = $('<form>').append(inputField);
+        form.css({
+            'padding': '5px'
+        })
         $(this).append(form);
 
         // Show the form
@@ -72,6 +76,8 @@ $('.timeblock').on('click', function() {
 })
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
+
+
 
 
 
